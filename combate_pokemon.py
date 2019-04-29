@@ -1,46 +1,41 @@
+chosen_pokemon = input("¿Contra qué Pokemon quieres combatir? (Squirtle / Charmander / Bulbasur): ").upper();
 
-pokemon_elegido = input("¿Contra qué Pokemon quieres combatir? (Squirtle / Charmander / Bulbasaur) ")
+pikachu_hp = 100;
+enemy_hp = 0;
+enemy_attack = 0;
 
-vida_pikachu = 100
-vida_enemigo = 0
-ataque_pokemon = 0
-nombre_pokemon = "no hay pokemón"
+if(chosen_pokemon == "SQUIRTLE"):
+    enemy_hp = 90;
+    enemy_name = "Squirtle";
+    enemy_attack = 8;
+elif(chosen_pokemon == "CHARMANDER"):
+    enemy_hp = 80;
+    enemy_name = "Charmander";
+    enemy_attack = 7;
+elif(chosen_pokemon == "BULBASUR"):
+    enemy_hp = 100;
+    enemy_name = "Bulbasur";
+    enemy_attack = 10;
 
-if pokemon_elegido == "Squirtle":
-    vida_enemigo = 90
-    nombre_pokemon = "Squirtle"
-    ataque_pokemon = 8
+while(pikachu_hp > 0 and enemy_hp > 0):
+    chosen_attack = input("¿Qué ataque vamos a usar? (Chispazo / Bola voltio): ").upper();
+    if(chosen_attack == "CHISPAZO"):
+        print("Pikachu usó Chispazo, le hace 10 puntos de daño al enemigo.");
+        enemy_hp -= 10;
+    elif(chosen_attack == "BOLA VOLTIO"):
+        print("Pikachu usó Bola voltio, le hace 12 puntos de daño al enemigo.");
+        enemy_hp -= 12;
 
-elif pokemon_elegido == "Charmander":
-    vida_enemigo = 80
-    nombre_pokemon = "Charmander"
-    ataque_pokemon = 7
+    print("La vida del {} ahora es de {}".format(enemy_name, enemy_hp));
 
-elif pokemon_elegido == "Bulbasaur":
-    vida_enemigo = 100
-    nombre_pokemon = "Bulbasaur"
-    ataque_pokemon = 10
+    print("{} te hace un ataque de {} puntos de daño").format(enemy_name, enemy_attack);
+    pikachu_hp -= enemy_attack;
 
-while vida_pikachu > 0 and vida_enemigo > 0:
-    # Elegimos el ataque
-    ataque_elegido = input("¿Qué ataque vamos a usar? (Chispazo / Bola voltio)")
+    print("La vida del Pikachu ahora es de {}".format(pikachu_hp));
 
-    if ataque_elegido == "Chispazo":
-        vida_enemigo -= 10
-    elif ataque_elegido == "Bola voltio":
-        vida_enemigo -= 12
-    # Mostramos el resultado del ataque
-    print("La vida del {} ahora es de {}".format(nombre_pokemon, vida_enemigo))
-    # El enemigo nos ataca
-    print("{} te hace un ataque de {} de daño".format(nombre_pokemon, ataque_pokemon))
-    vida_pikachu -= ataque_pokemon
+    if(enemy_hp <= 0):
+        print("¡Has ganado el combate!");
+    elif(pikachu_hp <= 0):
+        print("¡Has perdido el combate!");
 
-    print("La vida de Pikachu es de {}".format(vida_pikachu))
-
-if vida_enemigo <= 0:
-    print("¡Ganaste!")
-
-if vida_pikachu <= 0:
-    print("¡Perdiste!")
-
-print("El combate ha terminado")
+print("El combate ha terminado.");
